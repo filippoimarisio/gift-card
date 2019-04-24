@@ -24,7 +24,7 @@ class GiftCard extends Component {
     const value = event.target.value
 
     if(isNaN(value)) {
-      if (isNaN(value.trim())) {
+      if (!isNaN(value.replace(/\s+/g, ''))) {
         this.setState({ [name]: value, error: "" })
       } else {
       this.setState({ [name]: value, error: "The input should be a number"})
@@ -41,18 +41,17 @@ class GiftCard extends Component {
     const securityCode = this.state.securityCode.replace(/\s+/g, '');
     const cardNumber = this.state.cardNumber.replace(/\s+/g, '');
 
-    const requestUrl = `http://localhost:3000/cards?securityCode=${securityCode}`
+    const requestUrl = `http://localhost:3000/cards?number=${cardNumber}`
 
     fetch(requestUrl)
     .then(resData => resData.json())
     .then(resData => {
-      console.log('resData', resData)
       if (resData.length === 0) {
-        this.setState({ error: "The security code is invalid" })
+        this.setState({ error: "The card number is invalid" })
       }
       else {
         const card = resData.filter(card => {
-          return card.number === cardNumber
+          return card.securityCode === securityCode
         })
         if (card.length !== 0) {
           if (this.state.cardsArr.includes(card[0].number)) {
@@ -64,7 +63,7 @@ class GiftCard extends Component {
             })
           }
         } else {
-          this.setState({error: "The gift card number is invalid"})
+          this.setState({error: "The gift card security code is invalid"})
         }
       }
     })
