@@ -23,8 +23,29 @@ class GiftCard extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.cardNumber)
-    console.log(this.state.securityCode)
+
+    const securityCode = this.state.securityCode
+    const cardNumber = this.state.cardNumber
+
+    const requestUrl = `http://localhost:3000/cards?securityCode=${securityCode}`
+
+    fetch(requestUrl)
+    .then(resData => resData.json())
+    .then(resData => {
+      resData.map(card => {
+        if(card.number === cardNumber) {
+          console.log("the card", card)
+        }
+        if(card === "" || card === null) {
+          throw new Error("The card number is incorrect")
+        } else {
+          return card
+        }
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
     this.setState({
       cardNumber: "",
