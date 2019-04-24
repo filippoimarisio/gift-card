@@ -1,11 +1,11 @@
 .gift-card {
-  max-width: 30rem;
+  max-width: 23rem;
   margin: 0 auto;
   text-align: left;
 }
 
 .gift-card__title {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .card__label {
@@ -18,7 +18,7 @@
 
 .card__number,
 .card__security {
-  padding: 10px;
+  padding: 15px 10px;
   box-sizing: border-box;
 }
 
@@ -32,12 +32,12 @@
 }
 
 .card__submit {
-  padding: 10px 20px;
+  padding: 15px;
+  width: 150px;
   text-transform: uppercase;
   background-color: rgb(46, 45, 45);
   color: white;
   font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
 }
