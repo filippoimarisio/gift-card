@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Checkbox from '../components/Checkbox/Checkbox';
+import ValidCards from '../components/ValidCards/ValidCards';
 import './GiftCard.css';
 
 class GiftCard extends Component {
@@ -29,7 +30,7 @@ class GiftCard extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    
     const securityCode = this.state.securityCode
     const cardNumber = this.state.cardNumber
 
@@ -74,6 +75,9 @@ class GiftCard extends Component {
         { this.state.isGiftCard && (
           <div className="card">
             <p className="card__label">Please enter the 19-digit number and code from your gift card below</p>
+            <ValidCards 
+              giftCards={this.state.giftCards}
+            />
             <p className="card__error">{this.state.error}</p>
             <form className="card__form">
               <input

@@ -1,0 +1,15 @@
+.valid-card {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: rgb(245, 243, 243);
+}
+
+.valid-card__details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px
+}
+
+.valid-card__discount {
+  font-weight: bold;
+}
