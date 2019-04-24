@@ -9,6 +9,7 @@ class GiftCard extends Component {
     cardNumber: "",
     securityCode: "",
     giftCards: [],
+    cardsArr: [],
     error: ""
   }
 
@@ -48,10 +49,14 @@ class GiftCard extends Component {
       const card = resData.filter(card => {
         return card.number === cardNumber
       })
-      if(card.length !== 0 && !this.state.giftCards.includes(card)) {
-        this.setState({
-          ...this.state.giftCards.push(card)
-        })
+      if (card.length !== 0) {
+        if (this.state.cardsArr.includes(card[0].number)) {
+          this.setState({ error: "This card has already been used" })
+        } else {
+          this.setState({
+            ...this.state.giftCards.push(card),
+            ...this.state.cardsArr.push(card[0].number)
+          })}
       } else {
         this.setState({error: "The card number is invalid"})
       }
