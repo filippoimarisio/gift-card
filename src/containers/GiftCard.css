@@ -7,3 +7,33 @@
 .gift-card__title {
   font-size: 16px;
 }
+
+.card__label {
+  color: rgb(165, 164, 164)
+}
+
+.card__number,
+.card__security {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card__number {
+  width: calc((75%) - 10px);
+  margin-right: 10px;
+}
+
+.card__security {
+  width: 25%;
+}
+
+.card__submit {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  background-color: rgb(46, 45, 45);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}

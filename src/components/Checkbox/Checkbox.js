@@ -7,8 +7,9 @@ const Checkbox = props => {
       <form className="checkbox">
         <input 
           type="checkbox" 
+          name={props.name}
           className="checkbox__input"
-          onClick={props.onCheckboxClick}
+          onChange={props.onCheckboxClick}
           checked={props.isChecked}
         />
         <label className="checkbox__label">{props.label}</label>
