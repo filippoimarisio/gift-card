@@ -20,7 +20,11 @@ class GiftCard extends Component {
   handleCardInput = event => {
     const name = event.target.name
     const value = event.target.value
-    this.setState({[name]: value})
+    if(isNaN(value)) {
+      this.setState({ [name]: value, error: "The input should be a number"})
+    } else {
+      this.setState({[name]: value, error: ""})
+    }
   }
 
   handleSubmit = event => {
@@ -34,16 +38,18 @@ class GiftCard extends Component {
     fetch(requestUrl)
     .then(resData => resData.json())
     .then(resData => {
-      resData.map(card => {
-        if(card.number === cardNumber) {
-          this.setState({
-            ...this.state.giftCards.push(card)
-          })
-        }
-        return resData
+      const card = resData.filter(card => {
+        return card.number === cardNumber
       })
+      if(card.length !== 0) {
+        this.setState({
+          ...this.state.giftCards.push(card)
+        })
+      } else {
+        this.setState({error: "The card number is invalid"})
+      }
     })
-    .catch(err => {
+    .catch(() => {
       throw new Error("Failed")
     });
 
@@ -68,6 +74,7 @@ class GiftCard extends Component {
         { this.state.isGiftCard && (
           <div className="card">
             <p className="card__label">Please enter the 19-digit number and code from your gift card below</p>
+            <p className="card__error">{this.state.error}</p>
             <form className="card__form">
               <input
                 type="text"

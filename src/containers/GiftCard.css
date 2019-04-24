@@ -12,6 +12,10 @@
   color: rgb(165, 164, 164)
 }
 
+.card__error {
+  color: red;
+}
+
 .card__number,
 .card__security {
   padding: 10px;
