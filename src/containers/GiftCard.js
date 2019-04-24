@@ -46,19 +46,26 @@ class GiftCard extends Component {
     fetch(requestUrl)
     .then(resData => resData.json())
     .then(resData => {
-      const card = resData.filter(card => {
-        return card.number === cardNumber
-      })
-      if (card.length !== 0) {
-        if (this.state.cardsArr.includes(card[0].number)) {
-          this.setState({ error: "This card has already been used" })
+      console.log('resData', resData)
+      if (resData.length === 0) {
+        this.setState({ error: "The security code is invalid" })
+      }
+      else {
+        const card = resData.filter(card => {
+          return card.number === cardNumber
+        })
+        if (card.length !== 0) {
+          if (this.state.cardsArr.includes(card[0].number)) {
+            this.setState({ error: "This gift card has already been used" })
+          } else {
+            this.setState({
+              ...this.state.giftCards.push(card),
+              ...this.state.cardsArr.push(card[0].number)
+            })
+          }
         } else {
-          this.setState({
-            ...this.state.giftCards.push(card),
-            ...this.state.cardsArr.push(card[0].number)
-          })}
-      } else {
-        this.setState({error: "The card number is invalid"})
+          this.setState({error: "The gift card number is invalid"})
+        }
       }
     })
     .catch(() => {
