@@ -6,7 +6,9 @@ class GiftCard extends Component {
   state ={
     isGiftCard : false,
     cardNumber: "",
-    securityCode: ""
+    securityCode: "",
+    giftCards: [],
+    error: ""
   }
 
   handleCheckbox = event => {
@@ -34,17 +36,15 @@ class GiftCard extends Component {
     .then(resData => {
       resData.map(card => {
         if(card.number === cardNumber) {
-          console.log("the card", card)
+          this.setState({
+            ...this.state.giftCards.push(card)
+          })
         }
-        if(card === "" || card === null) {
-          throw new Error("The card number is incorrect")
-        } else {
-          return card
-        }
+        return resData
       })
     })
     .catch(err => {
-      console.log(err);
+      throw new Error("Failed")
     });
 
     this.setState({
