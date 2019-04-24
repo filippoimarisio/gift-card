@@ -10,6 +10,7 @@ const ValidCards = props => {
           return (
             <ValidCard 
               card={c[0]}
+              key={c[0].number}
             />
           )}
         )}
