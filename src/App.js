@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import GiftCard from './containers/GiftCard';
 
 function App() {
   return (
     <div className="App">
-      <h1>Gift card</h1>
+      <GiftCard />
     </div>
   );
 }

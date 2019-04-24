@@ -1,0 +1,26 @@
+.checkbox__input {
+  -webkit-appearance: none;
+  background-color: rgb(21, 90, 21);
+	padding: 7px;
+	display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox__input:checked:after {
+	content: '\2714';
+	font-size: 12px;
+	position: absolute;
+	top: -1px;
+	left: 2px;
+	color: #eeeff0;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox__label {
+  margin-left: 10px;
+}
